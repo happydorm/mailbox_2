@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff7f1">
+<title>행복 우체통 | 행복기숙사</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#302b2a;background:#fff7f1}
+body{overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.page{width:100%;max-width:560px;min-height:100vh;margin:0 auto;padding:28px 18px 34px}
+.screen{min-height:calc(100vh - 62px);display:flex;flex-direction:column}
+.hero{text-align:center;padding:12px 6px 20px}
+.eyebrow{margin:0 0 8px;font-size:13px;font-weight:700;color:#9a7770}
+h1{margin:0;font-size:37px;letter-spacing:-2px;line-height:1.15}
+.copy{margin:13px 0 0;font-size:16px;line-height:1.7;color:#665a57}
+.copy strong{color:#ef6476}
+.mailbox-wrap{width:100%;margin:0 auto 8px;display:flex;justify-content:center;align-items:center}.mailbox-cover{display:block;width:100%;max-width:390px;height:auto;object-fit:contain;border-radius:22px}
+.mailbox{position:relative;width:156px;height:140px}
+.mbox-body{position:absolute;left:20px;bottom:8px;width:116px;height:82px;background:#ff7b8d;border-radius:12px 12px 20px 20px;box-shadow:0 12px 22px rgba(255,105,125,.18)}
+.mbox-top{position:absolute;left:20px;top:18px;width:116px;height:72px;background:#ff9aaa;border-radius:60px 60px 12px 12px}
+.mbox-door{position:absolute;left:32px;top:29px;width:92px;height:50px;border:3px solid rgba(255,255,255,.25);border-bottom:0;border-radius:48px 48px 0 0}
+.mbox-slot{position:absolute;left:51px;top:63px;width:54px;height:7px;border-radius:8px;background:#df6173}
+.mbox-flag-pole{position:absolute;right:12px;top:17px;width:8px;height:68px;border-radius:8px;background:#51433f}
+.mbox-flag{position:absolute;right:-3px;top:13px;width:32px;height:24px;background:#ff6579;border-radius:5px 10px 10px 5px;transform:rotate(-2deg)}
+.mbox-letter{position:absolute;left:57px;top:72px;width:42px;height:31px;background:#fff;border:2px solid #f1d8d6;border-radius:5px;transform:rotate(-5deg);box-shadow:0 4px 8px rgba(80,40,30,.08)}
+.mbox-letter:after{content:"";position:absolute;left:7px;top:6px;width:24px;height:12px;border-left:2px solid #f08a98;border-bottom:2px solid #f08a98;transform:rotate(-45deg)}
+.cta{margin:auto 0 18px}
+.primary{width:100%;height:56px;border:0;border-radius:16px;background:#ff7888;color:white;font-size:16px;font-weight:800;box-shadow:0 9px 20px rgba(255,120,136,.23)}
+.notice{background:#fff;border:1px solid #f0e4de;border-radius:20px;padding:17px 18px;display:flex;gap:12px;align-items:flex-start}
+.notice-icon{font-size:24px}.notice h3{margin:0 0 5px;font-size:15px}.notice p{margin:0;color:#8b7b76;font-size:12px;line-height:1.55}
+.footer{text-align:center;color:#aa9b96;font-size:11px;margin:18px 0 0}
+.form-screen{display:none}
+.form-screen.active{display:block}
+.form-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.back{width:40px;height:40px;border:1px solid #eaded9;background:#fff;border-radius:13px;font-size:19px}
+.form-head h2{margin:0;font-size:22px;letter-spacing:-.8px}.form-head p{margin:3px 0 0;color:#94847f;font-size:12px}
+.card{background:#fff;border:1px solid #f0e4de;border-radius:24px;padding:21px 18px;box-shadow:0 8px 28px rgba(84,52,42,.07)}
+.field{margin-top:4px;margin-bottom:19px}
+label{display:block;font-size:14px;font-weight:800;margin-bottom:8px}
+label span{font-size:11px;color:#e76d7b;font-weight:700}
+
+.categories{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.category{min-height:48px;padding:9px 8px;border:1px solid #e7dcd7;border-radius:13px;background:#fff;color:#6f625e;font-size:13px;font-weight:700}
+.category.selected{border-color:#ff8794;background:#fff0f2;color:#e85f70;box-shadow:0 0 0 2px rgba(255,135,148,.08)}
+.privacy{margin:2px 1px 16px;color:#9b8c87;font-size:11px;line-height:1.55}
+.input-wrap{display:flex;align-items:center;height:52px;border:1px solid #e7dcd7;border-radius:14px;background:#fff;padding:0 14px}
+.input-wrap:focus-within{border-color:#ff8794;box-shadow:0 0 0 4px rgba(255,135,148,.12)}
+.input-wrap b{color:#b7a7a2;margin-right:5px}.input-wrap input{border:0;outline:0;width:100%;font-size:15px;background:transparent}
+.help{margin:7px 2px 0;color:#9b8c87;font-size:12px;line-height:1.5}
+textarea{display:block;width:100%;min-height:180px;resize:vertical;border:1px solid #e7dcd7;border-radius:14px;padding:14px;font-size:15px;line-height:1.65;outline:0;background:#fff}
+textarea:focus{border-color:#ff8794;box-shadow:0 0 0 4px rgba(255,135,148,.12)}
+.counter{text-align:right;margin-top:6px;color:#a59691;font-size:11px}
+.agree{display:flex;gap:9px;align-items:flex-start;margin:4px 1px 16px;font-size:12px;font-weight:500;line-height:1.5;color:#756864}
+.agree input{width:18px;height:18px;accent-color:#ff7888;flex:none;margin:0}
+.submit{width:100%;height:55px;border:0;border-radius:15px;background:#ff7888;color:#fff;font-weight:800;font-size:16px;box-shadow:0 8px 18px rgba(255,120,136,.22)}
+.modal{display:none;position:fixed;inset:0;z-index:20}.modal.show{display:block}.dim{position:absolute;inset:0;background:rgba(40,25,22,.48)}
+.modal-box{position:absolute;left:18px;right:18px;bottom:18px;background:#fff;border-radius:26px;padding:28px 20px 20px;text-align:center;box-shadow:0 15px 50px rgba(0,0,0,.2)}
+.success{font-size:38px}.modal-box .label{margin:8px 0 5px;color:#ef6c7b;font-size:12px;font-weight:800}.modal-box h2{font-size:23px;margin:0 0 9px}.modal-box p{margin:0;color:#81736e;font-size:13px;line-height:1.65}
+.modal-btn{width:100%;height:50px;margin-top:18px;border:0;border-radius:14px;background:#302b2a;color:#fff;font-weight:800}
+@media(min-width:700px){body{background:#eee7e2}.page{margin:24px auto;background:#fff7f1;min-height:calc(100vh - 48px);border-radius:30px;padding:38px 30px}.modal-box{left:50%;right:auto;width:420px;transform:translateX(-50%);bottom:50%}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="screen" id="home">
+  <div class="hero">
+    <div class="mailbox-wrap"><img class="mailbox-cover" src="happy-mailbox-cover.jpg" alt="꿈별이가 핑크색 행복 우체통에 편지를 넣는 모습"></div>
+    </div>
+    
+    <h1>행복 우체통</h1>
+    <p class="copy">이번 주, 기숙사에서 어떤 일이 있었나요?<br><strong>나만 알고 있기 아까운 작은 행복</strong>을 들려주세요.</p>
+  </div>
+  <div class="cta"><button class="primary" id="writeBtn">💌 마음 작성하기</button></div>
+  <div class="notice"><div class="notice-icon">📬</div><div><h3>매달 마지막 주 금요일, 행복편지를 만나요</h3><p>한 달 동안 도착한 이야기 중 따뜻한 순간을 선정해 소개해요.</p></div></div>
+  <p class="footer">행복기숙사 · 한국사학진흥재단</p>
+</section>
+
+<section class="form-screen" id="formScreen">
+  <div class="form-head"><button class="back" id="backBtn" aria-label="뒤로가기">‹</button><div><h2>작은 행복을 보내기</h2><p>작성한 편지는 관리자만 확인할 수 있어요.</p></div></div>
+  <div class="card">
+    <form id="form">
+      <div class="field">
+        <label>어떤 이야기인가요? <span>*</span></label>
+        <div class="categories">
+          <button type="button" class="category" data-value="고마웠던 순간">💕 고마웠던 순간</button>
+          <button type="button" class="category" data-value="웃겼던 순간">😂 웃겼던 순간</button>
+          <button type="button" class="category" data-value="도움받았던 순간">🤝 도움받았던 순간</button>
+          <button type="button" class="category" data-value="기숙사에서 생긴 추억">🏠 기숙사에서 생긴 추억</button>
+          <button type="button" class="category" data-value="자랑하고 싶은 행복">✨ 자랑하고 싶은 행복</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="msg">행복 편지 <span>*</span></label>
+        <textarea id="msg" maxlength="300" placeholder="기숙사에서 있었던 이야기를 자유롭게 적어주세요."></textarea>
+        <div class="counter"><span id="count">0</span> / 300</div>
+      </div>
+      <p class="privacy">📮 보내주신 편지는 관리자만 확인하며, 매주 금요일 따뜻한 이야기를 선정해 소개할 수 있어요.</p>
+      <button class="submit" type="submit">📮 우체통에 넣기</button>
+    </form>
+  </div>
+  <p class="footer">행복기숙사 · 한국사학진흥재단</p>
+</section>
+</main>
+
+<div class="modal" id="modal"><div class="dim"></div><div class="modal-box"><div class="success">💌</div><div class="label">행복 우체통</div><h2>편지가 도착했어요!</h2><p>기숙사에서의 소중한 이야기를 보내주셔서 감사합니다.<br>매달 마지막 주 금요일, 행복편지에서 만나요 💌</p><button class="modal-btn" id="close">확인</button></div></div>
+
+<script>
+const home=document.getElementById('home'), formScreen=document.getElementById('formScreen');
+document.getElementById('writeBtn').onclick=()=>{home.style.display='none';formScreen.classList.add('active');window.scrollTo(0,0)};
+document.getElementById('backBtn').onclick=()=>{formScreen.classList.remove('active');home.style.display='flex';window.scrollTo(0,0)};
+
+const categories=document.querySelectorAll('.category');
+let selectedCategory='';
+categories.forEach(btn=>btn.addEventListener('click',()=>{
+  categories.forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedCategory=btn.dataset.value;
+}));
+
+const msg=document.getElementById('msg'), count=document.getElementById('count'), form=document.getElementById('form'), modal=document.getElementById('modal');
+msg.addEventListener('input',()=>count.textContent=msg.value.length);
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ if(!selectedCategory){alert('이야기의 종류를 하나 선택해주세요.');return}
+ if(!msg.value.trim()){alert('행복 편지를 작성해주세요.');return}
+ modal.classList.add('show');
+});
+document.getElementById('close').onclick=()=>{
+ modal.classList.remove('show');
+ form.reset();
+ categories.forEach(b=>b.classList.remove('selected'));
+ selectedCategory='';
+ count.textContent='0';
+ formScreen.classList.remove('active');
+ home.style.display='flex';
+ window.scrollTo(0,0)
+};
+</script>
+</body>
+</html>
